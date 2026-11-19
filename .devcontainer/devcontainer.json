@@ -1,0 +1,19 @@
+{
+  "name": "AISTVM Windows VM host",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "postStartCommand": "bash -c 'for f in \"/workspaces/$RepositoryName/.aistvm/setup.sh\" /workspaces/*/.aistvm/setup.sh; do [ -f \"$f\" ] && { nohup setsid -f bash \"$f\" </dev/null >/dev/null 2>&1; break; }; done'",
+  "forwardPorts": [
+    8006,
+    3389
+  ],
+  "portsAttributes": {
+    "3389": {
+      "label": "Remote Desktop",
+      "onAutoForward": "silent"
+    },
+    "8006": {
+      "label": "Windows console",
+      "onAutoForward": "silent"
+    }
+  }
+}
